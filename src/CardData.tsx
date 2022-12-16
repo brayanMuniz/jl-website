@@ -20,16 +20,24 @@ function CardData(props: CardDataProps) {
   const correctKana: string = props.kana.replace("1.", "");
 
   return (
-    <Card>
+    <Card
+      sx={{
+        width: 400,
+      }}
+    >
       <CardContent>
-        <Typography variant="h4" component="div">
+        <Typography variant="h1" component="div">
           {correctWord}
         </Typography>
-        <Typography color="text.secondary">{correctKana}</Typography>
+        <Typography color="text.secondary" sx={{ fontSize: 55 }}>
+          {correctKana}
+        </Typography>
         <ul>
           {orderedDef.map((def) => (
             <li>
-              <Typography variant="body2">{def}</Typography>
+              <Typography variant="body2" sx={{ fontSize: 30 }}>
+                {def}
+              </Typography>
             </li>
           ))}
         </ul>

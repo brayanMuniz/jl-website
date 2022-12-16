@@ -37,7 +37,7 @@ function App() {
               key={idx}
               variant="h4"
               display={"inline"}
-              sx={{ margin: 1.5 }}
+              sx={{ margin: 1.5, fontSize: 40 }}
             >
               {lineData.line}
             </Typography>

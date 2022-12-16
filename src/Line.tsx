@@ -31,7 +31,7 @@ function Line(props: LineProps) {
           <Typography
             variant="h4"
             display={"inline"}
-            sx={{ textDecoration: "underline", margin: 1.5 }}
+            sx={{ textDecoration: "underline", margin: 1.5, fontSize: 40 }}
             key={idx}
           >
             {card.word.replace("1. ", "")}
