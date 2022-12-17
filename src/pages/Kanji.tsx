@@ -1,3 +1,6 @@
+import CardData from "../CardData";
+import { Grid } from "@mui/material";
+
 function Kanji(props: { lyricsLines: Array<any> }) {
   let allKanji: Array<any> = [];
   props.lyricsLines.forEach((line) => {
@@ -10,9 +13,24 @@ function Kanji(props: { lyricsLines: Array<any> }) {
       }
     }
   });
-  console.log(allKanji);
 
-  return <div>Kanji</div>;
+  return (
+    <Grid container spacing={1}>
+      {allKanji.map((card, idx) => {
+        return (
+          <Grid item key={idx}>
+            <CardData
+              key={idx}
+              word={card.word}
+              kana={card.kana}
+              definitions={card.definitions}
+              conjugation={card.conjugation}
+            ></CardData>
+          </Grid>
+        );
+      })}
+    </Grid>
+  );
 }
 
 export default Kanji;
