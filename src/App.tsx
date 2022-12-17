@@ -1,16 +1,12 @@
-import "./App.css";
-import Line from "./Line";
-import { CardDataProps } from "./CardData";
+import Home from "./pages/Home";
+import Kanji from "./pages/Kanji";
+import NoPage from "./pages/NoPage";
 
-// mui
-import { Typography } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// *** Will have to use react store in the future since the process will go from lyrics.txt => server return json => format json ***
 import testData from "./testData.json";
-interface lineData {
-  line: string;
-  cards: Array<CardDataProps> | never[];
-}
-let lyricsLines: Array<lineData | string | any> = [];
+let lyricsLines: Array<any> = [];
 Object.entries(testData).forEach((entry) => {
   const [lineIdx, value] = entry;
 
@@ -28,23 +24,13 @@ Object.entries(testData).forEach((entry) => {
 
 function App() {
   return (
-    <div className="App">
-      {lyricsLines.map((lineData, idx) => {
-        if (lineData === "") return <br key={idx} />;
-        else if (lineData.cards.length === 0)
-          return (
-            <Typography
-              key={idx}
-              variant="h4"
-              display={"inline"}
-              sx={{ margin: 1.5, fontSize: 40 }}
-            >
-              {lineData.line}
-            </Typography>
-          );
-        else return <Line key={idx} lineData={lineData}></Line>;
-      })}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home lyricsLines={lyricsLines} />} />
+        <Route path="kanji" element={<Kanji lyricsLines={lyricsLines} />} />
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
